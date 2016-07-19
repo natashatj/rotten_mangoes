@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     if !current_user
       flash[:alert] = "You must log in."
       redirect_to new_session_path
+      #think of returning something explicit to see if restricted or not
     end
   end
 
