@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id] = user.id
       redirect_to movies_path
     else
       render :new
@@ -19,5 +20,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :firstname, :lastname, :password, :password_confirmation)
   end
 
-  
+
 end
