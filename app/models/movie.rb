@@ -16,11 +16,6 @@ class Movie < ApplicationRecord
 
   validate :release_date_is_in_the_past
 
-  validates_processing_of :image
-
-  validate :image_size_validation
- 
-
   mount_uploader :image, ImageUploader
 
 
@@ -35,11 +30,6 @@ class Movie < ApplicationRecord
     if release_date.present?
       errors.add(:release_date, "should be in the past") if release_date > Date.today
     end
-  end
-
-  private
-  def image_size_validation
-    errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
   end
 
 end
