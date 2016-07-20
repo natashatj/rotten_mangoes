@@ -18,6 +18,12 @@ class Movie < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+    where("director LIKE ?", "%#{search}%")
+    where("runtime_in_minutes LIKE ?", "%#{search}%")
+  end
+
 
 
   def review_average
